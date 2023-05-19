@@ -1,1 +1,25 @@
 # cse185-finalproject
+
+
+## About
+
+The use of sequencing technology such as Illumina and Solexa tend to reduce read quality across a read towards the 3' and 5' end. To compensate for this and prevent innocrrectly called bases in downstream analysis, read trimming tools are needed. 
+
+Our tool, PET, mimicks functionality of Sickle through the use of a sliding window that uses a user set threshold to determine read quality throughout a fastq file. 
+
+**Options**
+
+**Single-end**
+Input a single-end file (fastq, Sanger, Illumina, Solexa) and output a single-end output file of reads that passed the filter.
+
+**Paired-End**
+Input either:
+- One interleaved paired-end file OR
+- Two seperate input files, foward and reverse
+and output either:
+- one interleaved paired-end file with reads that passed the filter OR
+- two output files, foward and reverse, with corresponding reads that passed the filter
+
+**Quality threshold**
+User set quality threshold for filters. On a phred-scale from 0-41 for FastQ input data
+
