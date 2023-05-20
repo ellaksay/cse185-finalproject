@@ -18,3 +18,8 @@ def main():
         "Default: stdout",metavar="FILE",type=str,required = False)
     parser.add_argument("-r" "--reverse",help="Reverse read." \
         "Default: stdout",metavar="FILE",type=str,required = False)
+    
+     # Parse args
+     args = parser.parse_args()
+    
+# Running: ./pet.py --help
