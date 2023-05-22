@@ -23,3 +23,17 @@ and output either:
 **Quality threshold**
 User set quality threshold for filters. On a phred-scale from 0-41 for FastQ input data
 
+## Installation
+```
+git clone https://github.com/ellaksay/cse185-finalproject
+cd cse185-finalproject
+python3 setup.py build_ext --inplace
+```
+## Usage Instructions
+```
+python3 cse185-finalproject/my_pet/pet.py --help
+Example command :
+python3 my_pet/pet.py -FILL IN HERE
+
+Run tests :
+```
