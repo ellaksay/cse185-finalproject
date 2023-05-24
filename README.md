@@ -43,8 +43,10 @@ python3 ~/cse185-finalproject/my_pet/pet.py pe -f ~/test.f.fastq -r ~/test.r.fas
 The following inputs are required:
 - ```-f``` ```--forward```: Forward fastq read
 - ```-r``` ```--reverse```: Reverse fastq read
-- ```-t``` ```--qual-type```: Type of quality values 
 - ```-o``` ```--output```: Forward output file
+
+Users may also specify these options:
+- ```-t``` ```--qual-type```: Type of quality values (sanger, illumina, solexa)
 - ```-p``` ```--output-pe2```: Reverse output file
 - ```-s``` ```--output-single```: Singlton output file
 
