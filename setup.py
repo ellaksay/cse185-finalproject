@@ -7,6 +7,6 @@ setup(
   entry_points={
     "console_scripts": {
         "pet=pet.pet:main"
-      ],
+    },
   },
 )
