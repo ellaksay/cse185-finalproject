@@ -50,3 +50,9 @@ Users may also specify these options:
 - ```-p``` ```--output-pe2```: Reverse output file
 - ```-s``` ```--output-single```: Singlton output file
 
+## Contributors
+This repository was generated for a UCSD CSE 185 Advanced Bioinformatics Lab final project by students Ella Say, Brianna Sanchez, and Anu Selvaraj
+
+
+
+
