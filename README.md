@@ -31,10 +31,10 @@ python3 setup.py build_ext --inplace
 ```
 ## Usage Instructions
 ```
-python3 cse185-finalproject/my_pet/pet.py --help
+python3 ~/cse185-finalproject/my_pet/pet.py --help
 Example command :
-python3 cse185-finalproject/my_pet/pet.py pe -f file_1.fq -r file_2.fq -t sanger -o file_1_trimmed.fq  -p file_2_trimmed.fq -s file_single_trimmed.fq
+python3 ~/cse185-finalproject/my_pet/pet.py pe -f file_1.fq -r file_2.fq -t sanger -o file_1_trimmed.fq  -p file_2_trimmed.fq -s file_single_trimmed.fq
 
 Run tests : 
-python3 cse185-finalproject/my_pet/pet.py pe -f ~/test.f.fastq -r ~/test.r.fastq -t sanger -o ~/test.f_trimmed.fastq -p ~/test.r_trimmed.fastq -s ~/test_singletons.fastq
+python3 ~/cse185-finalproject/my_pet/pet.py pe -f ~/test.f.fastq -r ~/test.r.fastq -t sanger -o ~/test.f_trimmed.fastq -p ~/test.r_trimmed.fastq -s ~/test_singletons.fastq
 ```
