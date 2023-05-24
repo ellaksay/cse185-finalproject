@@ -38,3 +38,13 @@ python3 ~/cse185-finalproject/my_pet/pet.py pe -f file_1.fq -r file_2.fq -t sang
 Run tests : 
 python3 ~/cse185-finalproject/my_pet/pet.py pe -f ~/test.f.fastq -r ~/test.r.fastq -t sanger -o ~/test.f_trimmed.fastq -p ~/test.r_trimmed.fastq -s ~/test_singletons.fastq
 ```
+
+## Inputs and options
+The following inputs are required:
+- ```-f``` ```--forward```: Forward fastq read
+- ```-r``` ```--reverse```: Reverse fastq read
+- ```-t``` ```--qual-type```: Type of quality values 
+- ```-o``` ```--output```: Forward output file
+- ```-p``` ```--output-pe2```: Reverse output file
+- ```-s``` ```--output-single```: Singlton output file
+
