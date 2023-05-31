@@ -44,6 +44,33 @@ def TrimLonger(forward, reverse):
     forward: fastq
     reverse: fastq
     """
+
+
+"""
+https://github.com/sam-k/seq-quality-trimming/blob/master/Code/seq_quality_trimming.py
+"""
+
+def write_fasta(sequences, filename, field=""):
+    records = []
+    for sq in sequences:
+        if field=="original":
+            for k in range(2):
+                records.append(SeqRecord(
+                        Seq(sq["seqs"][k], IUPAC.IUPACAmbiguousDNA()),
+                        id=sq["names"][k], description=""))
+        elif field=="trimmed" or sq["merged_seq"] is None:
+            for k in range(2):
+                records.append(SeqRecord(
+                        Seq(sq["trimmed_seqs"][k], IUPAC.IUPACAmbiguousDNA()),
+                        id=sq["names"][k], description="({})".format(
+                                "unmerged" if field=="merged" else field)))
+        elif field=="merged":
+            records.append(SeqRecord(
+                    Seq(sq["merged_seq"], IUPAC.IUPACAmbiguousDNA()),
+                    id=", ".join(sq["names"]), description="(merged)"))
+    SeqIO.write(records, filename, "fasta")
+
+
     
 
 
