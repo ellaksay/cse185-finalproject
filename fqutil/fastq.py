@@ -8,7 +8,7 @@ import sys
 import gzip
 from collections import OrderedDict
 
-# import fqutil
+import fqutil
 
 
 class Read:
