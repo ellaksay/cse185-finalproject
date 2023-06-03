@@ -36,7 +36,10 @@ Example command :
 python3 ~/cse185-finalproject/my_pet/pet.py pe -f file_1.fq -r file_2.fq -t sanger -o file_1_trimmed.fq  -p file_2_trimmed.fq -s file_single_trimmed.fq
 
 Run tests : 
-python3 ~/cse185-finalproject/my_pet/pet.py pe -f ~/test.f.fastq -r ~/test.r.fastq -t sanger -o ~/test.f_trimmed.fastq -p ~/test.r_trimmed.fastq -s ~/test_singletons.fastq
+python3 pet.py pe -f ~/test.f.fastq -r ~/test.r.fastq -t sanger -o ~/test.f_trimmed.fastq -p ~/test.r_trimmed.fastq -s ~/test_singletons.fastq
+
+# python pet.py -o output.fastq -f ~/example_files/test.f.fastq -q 20 -m 30 -M 999999 pe
+
 ```
 
 ## Inputs and options
