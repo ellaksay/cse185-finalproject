@@ -44,6 +44,8 @@ def TrimLonger(forward, reverse):
     forward: fastq
     reverse: fastq
     """
+
+
     
 
 
