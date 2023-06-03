@@ -18,7 +18,7 @@ import argparse
 current_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(current_dir)
 
-from fqutil import myutils
+from fqutil import Fastq
 
 
 def main():
@@ -120,8 +120,8 @@ def main():
     print("M:", max_len)
 
 
-    fastq_in = forward_fastq
-    fastq_out = f_out_fastq
+    fastq_in = Fastq(args.forward[0])
+    fastq_out = Fastq(args.out[0])
 
     
     # read file and print back lines that pass the filter

@@ -3,9 +3,9 @@ import os
 import sys
 # import pytest
 
-from ..fqutil import myutils
+from ..fqutil import fastq
 
 # TODO - add unit tests here
 
 def test_GetQual():
-	assert(myutils.GetQual(0)=="!")
+	assert(fastq.GetQual(0)=="!")
