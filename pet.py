@@ -14,7 +14,6 @@ import os
 import sys
 import argparse 
 
-print(sys.path)
 # Add the current directory to the module search path
 current_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(current_dir)
