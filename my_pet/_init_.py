@@ -1,1 +1,1 @@
-from .version import __version__
+from ..my_pet.version import __version__

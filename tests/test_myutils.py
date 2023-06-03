@@ -1,9 +1,9 @@
 import argparse
 import os
 import sys
-import pytest
+# import pytest
 
-from . import myutils
+from ..fqutil import myutils
 
 # TODO - add unit tests here
 

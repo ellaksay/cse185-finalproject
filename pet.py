@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+
+# TEST COMMAND
+# python pet.py -o output.fastq -f ~/example_files/test.f.fastq \
+# -q 20 -m 30 -M 999999 pe
 """
 Command-Line script to perform paired-end sequence trimming of FASTQ files
 
@@ -9,6 +13,8 @@ Similar to sickle pe
 import argparse 
 import os
 import sys
+from fqutil import myutils, encoding2num
+
 
 def main():
     parser = argparse.ArgumentParser (
@@ -32,10 +38,16 @@ def main():
     parser.add_argument("-t", "--qual-type", help="Type of quality values: " \
             "solexa (CASAVA < 1.3), illumina (CASAVA 1.3 to 1.7), sanger (CASAVA >= 1.8)", \
             type=str, metavar="QUALITY TYPE", required=False)
+    parser.add_argument('-q', '--min-qual', default=30, nargs=1, type=int, \
+            help='Minimum phred score. Disabled by setting it to -10.', required=False)
+    parser.add_argument('-m', '--min-length', default=30, nargs=1, type=int, \
+            help='Minimum read length after trimming.',required=False)
+    parser.add_argument('-M', '--max-length', default=99999999, nargs=1, type=int,\
+            help='Maxmimum read length after trimming.',required=False)
     parser.add_argument("-p", "--output-pe2",help="Output trimmed reverse fastq file.", \
-        type=str, metavar="FILE", required=False)
+            type=str, metavar="FILE", required=False)
     parser.add_argument("-s", "--output-single",help="Output trimmed singles fastq file.", \
-        type=str, metavar="FILE", required=False)
+            type=str, metavar="FILE", required=False)
     
      # Parse args
     args = parser.parse_args()
@@ -76,6 +88,21 @@ def main():
     else:
         single_out_fastq = args.output_single
 
+    if args.min_qual is None:
+        min_qual = sys.stdout
+    else:
+        min_qual = args.min_qual
+    
+    if args.min_length is None:
+        min_len = sys.stdout
+    else:
+        min_len = args.min_length
+
+    if args.max_length is None:
+        max_len = sys.stdout
+    else:
+        max_len = args.max_length
+
     #Testing 
     print("f:", forward_fastq)
     print("r:", reverse_fastq)
@@ -83,6 +110,39 @@ def main():
     print("o:", f_out_fastq)
     print("p:", r_out_fastq)
     print("s:", single_out_fastq)
+    print("q:", min_qual)
+    print("m:", min_len)
+    print("M:", max_len)
+
+
+    fastq_in = forward_fastq
+    fastq_out = f_out_fastq
+
+    
+    # read file and print back lines that pass the filter
+    while True:
+        read = fastq_in.get_read()
+        if read is None:
+            break  # EOF
+        qual = encoding2num(read[3], parser.encoding)
+        
+        # get indices of acceptable quality
+        start = -1
+        for q in qual:
+            start += 1
+            if q >= min_qual:
+                break
+        end = 0
+        for q in reversed(qual):
+            end -= 1
+            if q >= min_qual:
+                break
+        if min_len <= len(qual) - start + end <= max_len:
+            fastq_out.writelines([
+                read[0], read[1][start:end] + '\n', 
+                read[2], read[3][start:end] + '\n'])
+    fastq_in.close()
+    fastq_out.close()
 
 if __name__ == "__main__":
     main()

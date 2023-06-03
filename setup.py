@@ -21,7 +21,7 @@ setup(
     version=VERSION,
     description='CSE185 PET Trimmer Project',
     author='Brianna Sanchez, Ella Say, Anu Selvaraj',
-    packages=find_packages(),
+    packages=['PET'],
     entry_points={
         "console_scripts": [
             "pet=my_pet.pet:main"
