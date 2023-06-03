@@ -10,10 +10,16 @@ Command-Line script to perform paired-end sequence trimming of FASTQ files
 Similar to sickle pe
 """
 
-import argparse 
 import os
 import sys
-from fqutil import myutils, encoding2num
+import argparse 
+
+print(sys.path)
+# Add the current directory to the module search path
+current_dir = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(current_dir)
+
+from fqutil import myutils
 
 
 def main():
@@ -124,7 +130,7 @@ def main():
         read = fastq_in.get_read()
         if read is None:
             break  # EOF
-        qual = encoding2num(read[3], parser.encoding)
+        qual = [read[3], parser.encoding]
         
         # get indices of acceptable quality
         start = -1

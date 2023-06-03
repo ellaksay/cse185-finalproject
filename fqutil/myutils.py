@@ -8,7 +8,7 @@ import sys
 import gzip
 from collections import OrderedDict
 
-import fqutil
+# import fqutil
 
 
 class Read:
@@ -125,7 +125,6 @@ class Fastq:
         '''
         Gets the next fastq read. Returns None at EOF.
         '''
-        # looks weird, but is faster than the old method
         if self.is_gzip:
             read = (
                 self.handle.readline().decode(),
