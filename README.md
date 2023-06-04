@@ -12,14 +12,6 @@ Our tool, PET, mimicks functionality of Sickle through the use of a sliding wind
 **Single-end**
 Input a single-end file (fastq, Sanger, Illumina, Solexa) and output a single-end output file of reads that passed the filter.
 
-**Paired-End**
-Input either:
-- One interleaved paired-end file OR
-- Two seperate input files, foward and reverse
-and output either:
-- one interleaved paired-end file with reads that passed the filter OR
-- two output files, foward and reverse, with corresponding reads that passed the filter
-
 **Quality threshold**
 User set quality threshold for filters. On a phred-scale from 0-41 for FastQ input data
 
