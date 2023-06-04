@@ -119,7 +119,12 @@ def main():
     print("m:", min_len)
     print("M:", max_len)
 
+    def convert_qual_chars_to_scores(qual_chars):
+        return [ord(char) - 33 for char in qual_chars]
 
+    qual_scores = convert_qual_chars_to_scores("BP\ccc^acebegafabfffbcag`gfb`faf]fad^^cedbeff`affhgfdcfe`^aaa\WHW_be_f_V_dfZ^Z[a`U]aaaT]bb]Z`G]Zb`[b]``]b]]Y_YRTGWGGGHQGQ]OYb_[^aBBBBBBBBBBBBBBBBBBBBB")
+    print(qual_scores)
+    
     def ReadFastq(file):
         """
         Return just the important lines of the fastq file
@@ -131,9 +136,8 @@ def main():
                 if "!" not in line and line.isalpha():
                     sequence.append(line)
         return '\n'.join(sequence)
-
-    fastq_forward = ReadFastq(forward_fastq)
     
+    fastq_forward = ReadFastq(forward_fastq)
     print(fastq_forward)
 
     
