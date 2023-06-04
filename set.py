@@ -2,12 +2,12 @@
 
 
 # TEST COMMAND
-# python pet.py -o output.fastq -f ~/example_files/test.f.fastq \
+# python set.py -o output.fastq -f ~/example_files/test.f.fastq \
 # -q 20 -m 30 -M 999999 pe
 """
-Command-Line script to perform paired-end sequence trimming of FASTQ files
+Command-Line script to perform single-end sequence trimming of FASTQ files
 
-Similar to sickle pe
+Similar to sickle se
 """
 
 import os
@@ -23,12 +23,12 @@ from fqutil.fastq import Fastq
 
 def main():
     parser = argparse.ArgumentParser (
-        prog = "pet", 
-        description = "Command-line script to trim paired-end reads"
+        prog = "set", 
+        description = "Command-line script to trim single-end reads"
     )
 
     # Input
-    parser.add_argument("pe", help = "Paired End", \
+    parser.add_argument("se", help = "Single End", \
         type=str)
 
     # Output
@@ -36,9 +36,7 @@ def main():
         "Default: stdout", metavar="FILE", type=str, required=False)
     
     # Other options
-    parser.add_argument("-f", "--forward", help="Input paired-end forward fastq file.", \
-        type=str, metavar="FILE", required=False)
-    parser.add_argument("-r", "--reverse",help="Input paired-end reverse fastq file.", \
+    parser.add_argument("-f", "--forward", help="Input single-end forward fastq file.", \
         type=str, metavar="FILE", required=False)
     parser.add_argument("-t", "--qual-type", help="Type of quality values: " \
             "solexa (CASAVA < 1.3), illumina (CASAVA 1.3 to 1.7), sanger (CASAVA >= 1.8)", \
@@ -49,8 +47,6 @@ def main():
             help='Minimum read length after trimming.',required=False)
     parser.add_argument('-M', '--max-length', default=99999999, nargs=1, type=int,\
             help='Maxmimum read length after trimming.',required=False)
-    parser.add_argument("-p", "--output-pe2",help="Output trimmed reverse fastq file.", \
-            type=str, metavar="FILE", required=False)
     parser.add_argument("-s", "--output-single",help="Output trimmed singles fastq file.", \
             type=str, metavar="FILE", required=False)
     
@@ -62,12 +58,6 @@ def main():
         forward_fastq = None
     else:
         forward_fastq = args.forward
-    
-    # Needs reconstruction: Load reverse
-    if args.reverse is None:
-        reverse_fastq = None
-    else:
-        reverse_fastq = args.reverse
 
     # Needs reconstruction: Load qual_type
     if args.qual_type is None:
@@ -80,12 +70,6 @@ def main():
         f_out_fastq = sys.stdout
     else: 
         f_out_fastq = args.out
-
-     # Needs reconstruction: Set up reverse output file
-    if args.output_pe2 is None:
-        r_out_fastq = sys.stdout
-    else:
-        r_out_fastq = args.output_pe2
 
     # Needs reconstruction: Set up single output file
     if args.output_single is None:
@@ -110,10 +94,8 @@ def main():
 
     #Testing 
     print("f:", forward_fastq)
-    print("r:", reverse_fastq)
     print("t:", quality_type)
     print("o:", f_out_fastq)
-    print("p:", r_out_fastq)
     print("s:", single_out_fastq)
     print("q:", min_qual)
     print("m:", min_len)
