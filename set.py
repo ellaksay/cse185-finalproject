@@ -122,26 +122,32 @@ def main():
     def convert_qual_chars_to_scores(qual_chars):
         return [ord(char) - 33 for char in qual_chars]
 
-    qual_scores = convert_qual_chars_to_scores("BP\ccc^acebegafabfffbcag`gfb`faf]fad^^cedbeff`affhgfdcfe`^aaa\WHW_be_f_V_dfZ^Z[a`U]aaaT]bb]Z`G]Zb`[b]``]b]]Y_YRTGWGGGHQGQ]OYb_[^aBBBBBBBBBBBBBBBBBBBBB")
-    print(qual_scores)
-    
-    def ReadFastq(file):
-        """
-        Return just the important lines of the fastq file
-        """
-        with open(file) as f:
-            sequence = []
-            for line in f:
-                line = line.strip()  # Remove trailing whitespaces and newlines
-                if "!" not in line and line.isalpha():
-                    sequence.append(line)
-        return '\n'.join(sequence)
-    
-    fastq_forward = ReadFastq(forward_fastq)
-    print(fastq_forward)
+    def ReadFastq(threshold, file):
+        with open(file, 'r') as f:
+            sequences = []
+            while True:
+                fastq_line = list(islice(f, 4))
+                if not fastq_line:
+                    break
 
-    
-    
+                # Sequence and quality string
+                sequence = fastq_line[1].strip()
+                quality_string = fastq_line[3].strip()
+                
+                # Convert quality string to scores
+                quality_scores = convert_qual_chars_to_scores(quality_string)
+
+                # Filter sequence by quality score threshold
+                filtered_sequence = [sequence[i] for i in range(len(sequence)) if quality_scores[i] > threshold]
+
+                # Add filtered sequence to list
+                sequences.append(''.join(filtered_sequence))
+   
+        return '\n'.join(sequences)
+     
+    filtered_sequences = ReadFastq(30, forward_fastq)  # replace with threshold
+    print(filtered_sequences)
+   
     # read file and print back lines that pass the filter
     while True:
         read = fastq_in.get_read()
