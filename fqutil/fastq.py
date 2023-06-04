@@ -1,13 +1,11 @@
 """
 Utilities for mypileup
 """
-import sys
 from termios import TIOCPKT_DOSTOP
 import os
 import sys
 import gzip
 from collections import OrderedDict
-
 import fqutil
 
 
