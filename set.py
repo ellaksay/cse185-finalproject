@@ -148,30 +148,7 @@ def main():
     filtered_sequences = ReadFastq(30, forward_fastq)  # replace with threshold
     print(filtered_sequences)
    
-    # read file and print back lines that pass the filter
-    while True:
-        read = fastq_in.get_read()
-        if read is None:
-            break  # EOF
-        qual = [read[3], parser.encoding]
-        
-        # get indices of acceptable quality
-        start = -1
-        for q in qual:
-            start += 1
-            if q >= min_qual:
-                break
-        end = 0
-        for q in reversed(qual):
-            end -= 1
-            if q >= min_qual:
-                break
-        if min_len <= len(qual) - start + end <= max_len:
-            fastq_out.writelines([
-                read[0], read[1][start:end] + '\n', 
-                read[2], read[3][start:end] + '\n'])
-    fastq_in.close()
-    fastq_out.close()
+
 
 if __name__ == "__main__":
     main()
