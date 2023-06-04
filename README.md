@@ -36,13 +36,16 @@ python3 set.py se -f ~/cse185-finalproject/example_files/test.f.fastq -t sanger 
 
 ## Inputs and options
 The following inputs are required:
-- ```-f``` ```--forward```: Forward fastq read
-- ```-o``` ```--output```: Forward output file
+- ```-f``` ```--forward```: Single-end fastq read
+- ```-o``` ```--output```: Output file
 
 Users may also specify these options:
 - ```-t``` ```--qual-type```: Type of quality values (sanger, illumina, solexa)
 - ```-p``` ```--output-pe2```: Reverse output file
 - ```-s``` ```--output-single```: Singleton output file
+- ```-q``` ```--min-qual```: Minimum quality
+- ```-m``` ```--min--length```: Minimum Length
+- ```-M``` ```--max-length```: Maximum Length
 
 ## Contributors
 This repository was generated for a UCSD CSE 185 Advanced Bioinformatics Lab final project by students Ella Say, Brianna Sanchez, and Anu Selvaraj
