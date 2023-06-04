@@ -138,10 +138,15 @@ def main():
                 quality_scores = convert_qual_chars_to_scores(quality_string)
 
                 # Filter sequence by quality score threshold
-                filtered_sequence = [sequence[i] for i in range(len(sequence)) if quality_scores[i] > threshold]
+                filtered_sequence = ""
+                for i in range(len(sequence)):
+                    if quality_scores[i] > threshold:
+                        filtered_sequence += sequence[i]
+                    else:
+                        break
 
                 # Add filtered sequence to list
-                sequences.append(''.join(filtered_sequence))
+                sequences.append(filtered_sequence)
    
         return '\n'.join(sequences)
      
