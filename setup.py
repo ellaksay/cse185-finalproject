@@ -18,15 +18,15 @@ with open(os.path.join(curdir, 'my_pet/version.py'), 'w') as fout:
 
 
 setup(
-    name='PET',
+    name='SET',
     version=VERSION,
-    description='CSE185 PET Trimmer Project',
+    description='CSE185 SET Trimmer Project',
     author='Brianna Sanchez, Ella Say, Anu Selvaraj',
     packages=['fqutil'],
     scripts=glob.glob('./*'),
     entry_points={
         "console_scripts": [
-            "pet=my_pet.pet:main"
+            "set=my_set.set:main"
         ],
     },
 )
