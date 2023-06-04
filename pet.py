@@ -120,8 +120,21 @@ def main():
     print("M:", max_len)
 
 
-    fastq_in = Fastq(args.forward[0])
-    fastq_out = Fastq(args.out[0])
+    def ReadFastq(file):
+        """
+        Return just the important lines of the fastq file
+        """
+        with open(file) as f:
+            sequence = []
+            for line in f:
+                line = line.strip()  # Remove trailing whitespaces and newlines
+                if "!" not in line and line.isalpha():
+                    sequence.append(line)
+        return '\n'.join(sequence)
+
+    fastq_forward = ReadFastq(forward_fastq)
+    
+    print(fastq_forward)
 
     
     # read file and print back lines that pass the filter
