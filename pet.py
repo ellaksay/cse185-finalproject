@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 
 # TEST COMMAND
@@ -18,7 +18,7 @@ import argparse
 current_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(current_dir)
 
-from fqutil import Fastq
+from fqutil.fastq import Fastq
 
 
 def main():

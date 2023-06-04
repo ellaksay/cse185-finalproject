@@ -1,4 +1,5 @@
 import os
+import glob
 from setuptools import setup, find_packages
 
 # version-keeping code based on pybedtools
@@ -21,7 +22,8 @@ setup(
     version=VERSION,
     description='CSE185 PET Trimmer Project',
     author='Brianna Sanchez, Ella Say, Anu Selvaraj',
-    packages=['PET'],
+    packages=['fqutil'],
+    scripts=glob.glob('./*'),
     entry_points={
         "console_scripts": [
             "pet=my_pet.pet:main"
