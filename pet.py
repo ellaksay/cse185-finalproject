@@ -137,6 +137,7 @@ def main():
     print(fastq_forward)
 
     
+    
     # read file and print back lines that pass the filter
     while True:
         read = fastq_in.get_read()
