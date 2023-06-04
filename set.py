@@ -13,12 +13,11 @@ Similar to sickle se
 import os
 import sys
 import argparse 
+from itertools import islice
 
 # Add the current directory to the module search path
 current_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(current_dir)
-
-from fqutil.fastq import Fastq
 
 
 def main():
@@ -38,8 +37,6 @@ def main():
     # Other options
     parser.add_argument("-f", "--input", help="Input single-end fastq file.", \
         type=str, metavar="FILE", required=False)
-    # parser.add_argument("-r", "--reverse",help="Input paired-end reverse fastq file.", \
-    #     type=str, metavar="FILE", required=False)
     parser.add_argument("-t", "--qual-type", help="Type of quality values: " \
             "solexa (CASAVA < 1.3), illumina (CASAVA 1.3 to 1.7), sanger (CASAVA >= 1.8)", \
             type=str, metavar="QUALITY TYPE", required=False)
@@ -49,25 +46,15 @@ def main():
             help='Minimum read length after trimming.',required=False)
     parser.add_argument('-M', '--max-length', default=99999999, nargs=1, type=int,\
             help='Maxmimum read length after trimming.',required=False)
-    # parser.add_argument("-p", "--output-pe2",help="Output trimmed reverse fastq file.", \
-    #         type=str, metavar="FILE", required=False)
-    # parser.add_argument("-s", "--output-single",help="Output trimmed singles fastq file.", \
-    #         type=str, metavar="FILE", required=False)
     
      # Parse args
     args = parser.parse_args()
 
-    # Needs reconstruction: Load forward
+    # Needs reconstruction: Load fastq
     if args.input is None:
-        forward_fastq = None
+        f_in_fastq = None
     else:
-        forward_fastq = args.input
-    
-    # Needs reconstruction: Load reverse
-    # if args.reverse is None:
-    #     reverse_fastq = None
-    # else:
-    #     reverse_fastq = args.reverse
+        f_in_fastq = args.input
 
     # Needs reconstruction: Load qual_type
     if args.qual_type is None:
@@ -80,18 +67,6 @@ def main():
         f_out_fastq = sys.stdout
     else: 
         f_out_fastq = args.out
-
-     # Needs reconstruction: Set up reverse output file
-    # if args.output_pe2 is None:
-    #     r_out_fastq = sys.stdout
-    # else:
-    #     r_out_fastq = args.output_pe2
-
-    # Needs reconstruction: Set up single output file
-    # if args.output_single is None:
-    #     single_out_fastq = sys.stdout
-    # else:
-    #     single_out_fastq = args.output_single
 
     if args.min_qual is None:
         min_qual = sys.stdout
@@ -109,12 +84,9 @@ def main():
         max_len = args.max_length
 
     #Testing 
-    print("f:", forward_fastq)
-    # print("r:", reverse_fastq)
+    print("f:", f_in_fastq)
     print("t:", quality_type)
     print("o:", f_out_fastq)
-    # print("p:", r_out_fastq)
-    # print("s:", single_out_fastq)
     print("q:", min_qual)
     print("m:", min_len)
     print("M:", max_len)
@@ -144,18 +116,16 @@ def main():
                         filtered_sequence += sequence[i]
                     else:
                         break
-
+                        
                 # Add filtered sequence to list
                 sequences.append(filtered_sequence)
    
         return '\n'.join(sequences)
      
-    filtered_sequences = ReadFastq(30, forward_fastq)  # replace with threshold
+    filtered_sequences = ReadFastq(min_qual, f_in_fastq)  # replace with threshold
     print(filtered_sequences)
    
-
-
 if __name__ == "__main__":
     main()
-# Print the help message: /usr/local/bin/python3 pet.py --help
-# Print the tester: /usr/local/bin/python3 pet.py pe -f ~/test.f.fastq -r ~/test.r.fastq -t sanger -o ~/test.f_trimmed.fastq -p ~/test.r_trimmed.fastq -s ~/test_singletons.fastq
+# Print the help message: python3 set.py --help
+# Print the tester: python3 set.py se -f ~/cse185-finalproject/example_files/test.f.fastq -t sanger -o ~/cse185-finalproject/results/test.f_trimmed.fastq
