@@ -124,5 +124,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-# Print the help message: python3 set.py --help
-# Print the tester: python3 set.py se -f ~/cse185-finalproject/test/test.fastq -t sanger -o ~/cse185-finalproject/results/test_trimmed.fastq -q 20
