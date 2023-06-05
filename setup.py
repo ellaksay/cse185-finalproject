@@ -22,8 +22,6 @@ setup(
     version=VERSION,
     description='CSE185 SET Trimmer Project',
     author='Brianna Sanchez, Ella Say, Anu Selvaraj',
-    packages=['fqutil'],
-    scripts=glob.glob('./*'),
     entry_points={
         "console_scripts": [
             "set=my_set.set:main"
