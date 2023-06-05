@@ -28,7 +28,7 @@ python3 set.py --help
 Example command :
 python3 set.py se -f <file_1.fq> -t [sanger] -o <file_1_trimmed.fq>  -p <file_2_trimmed.fq> -s <file_single_trimmed.fq>
 Running tests : 
-python3 set.py se -f ~/cse185-finalproject/test/test.fastq -t sanger -o ~/cse185-finalproject/results/test_trimmed.fastq -q 20
+python3 set.py se -f ~/cse185-finalproject/example_files/test.fastq -t sanger -o ~/cse185-finalproject/results/test_trimmed.fastq -q 20
 ```
 
 ## Inputs and options
