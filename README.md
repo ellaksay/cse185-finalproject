@@ -23,29 +23,22 @@ python3 setup.py build_ext --inplace
 ```
 ## Usage Instructions
 ```
+Example help command :
 python3 set.py --help
 Example command :
 python3 set.py se -f <file_1.fq> -t [sanger] -o <file_1_trimmed.fq>  -p <file_2_trimmed.fq> -s <file_single_trimmed.fq>
-
-Run tests : 
-python3 set.py se -f ~/cse185-finalproject/example_files/test.f.fastq -t sanger -o ~/cse185-finalproject/results/test.f_trimmed.fastq -p ~/cse185-finalproject/results/test.r_trimmed.fastq -s ~/cse185-finalproject/results/test_singletons.fastq
-
-# python set.py -o output.fastq -f ~/example_files/test.f.fastq -q 20 -m 30 -M 999999 se
-
+Running tests : 
+python3 set.py se -f ~/cse185-finalproject/test/test.fastq -t sanger -o ~/cse185-finalproject/results/test_trimmed.fastq -q 20
 ```
 
 ## Inputs and options
 The following inputs are required:
-- ```-f``` ```--forward```: Single-end fastq read
+- ```-f``` ```--input```: Single-end fastq read
 - ```-o``` ```--output```: Output file
 
 Users may also specify these options:
 - ```-t``` ```--qual-type```: Type of quality values (sanger, illumina, solexa)
-- ```-p``` ```--output-pe2```: Reverse output file
-- ```-s``` ```--output-single```: Singleton output file
 - ```-q``` ```--min-qual```: Minimum quality
-- ```-m``` ```--min--length```: Minimum Length
-- ```-M``` ```--max-length```: Maximum Length
 
 ## Contributors
 This repository was generated for a UCSD CSE 185 Advanced Bioinformatics Lab final project by students Ella Say, Brianna Sanchez, and Anu Selvaraj
