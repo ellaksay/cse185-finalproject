@@ -41,11 +41,11 @@ def main():
             "solexa (CASAVA < 1.3), illumina (CASAVA 1.3 to 1.7), sanger (CASAVA >= 1.8)", \
             type=str, metavar="QUALITY TYPE", required=False)
     parser.add_argument('-q', '--min-qual', default=30, nargs=1, type=int, \
-            help='Minimum phred score. Disabled by setting it to -10.', required=False)
+            metavar="INTEGER",help='Minimum phred score. Disabled by setting it to -10.', required=False)
     parser.add_argument('-m', '--min-length', default=30, nargs=1, type=int, \
-            help='Minimum read length after trimming.',required=False)
+            metavar="INTEGER",help='Minimum read length after trimming.',required=False)
     parser.add_argument('-M', '--max-length', default=99999999, nargs=1, type=int,\
-            help='Maxmimum read length after trimming.',required=False)
+            metavar="INTEGER",help='Maxmimum read length after trimming.',required=False)
     
      # Parse args
     args = parser.parse_args()
